@@ -1,0 +1,30 @@
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/socdb}
+    username: ${SPRING_DATASOURCE_USERNAME:soc}
+    password: ${SPRING_DATASOURCE_PASSWORD:soc_dev_password}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:3}
+      minimum-idle: 0
+      connection-timeout: 30000
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+server:
+  port: ${PORT:8080}
+  tomcat:
+    threads:
+      max: ${SERVER_TOMCAT_THREADS_MAX:20}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+app:
+  jwt-secret: ${JWT_SECRET:local-development-secret-change-this-32-characters-minimum}
+  ml-url: ${ML_SERVICE_URL:http://localhost:8000}
+  ml-enabled: ${ML_ENABLED:false}
+  cors-origins: ${APP_CORS_ORIGINS:http://localhost:5173}

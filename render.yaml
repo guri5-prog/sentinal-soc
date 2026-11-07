@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: soc-platform-api
+    runtime: docker
+    plan: free
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: SOC_ADMIN_EMAIL
+        sync: false
+      - key: SOC_ADMIN_PASSWORD
+        sync: false
+      - key: APP_CORS_ORIGINS
+        value: http://localhost:5173
+      - key: ML_ENABLED
+        value: "false"
+      - key: DB_POOL_SIZE
+        value: "3"
+      - key: SERVER_TOMCAT_THREADS_MAX
+        value: "20"
